@@ -3,6 +3,8 @@
 #   -----------------------------
 alias setmac="setmwe -a maci64 pwd"
 alias setand="setmwe -a android-arm-32 pwd"
+alias setios="setmwe -a ios-arm-64 pwd"
+export P4MERGE="/Applications/p4merge.app/Contents/MacOS/p4merge"
 
 #   -----------------------------
 #   Application-specific 
