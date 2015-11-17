@@ -43,16 +43,22 @@ alias em='emacs -nw'
 #   ------------------------------------------------------
 function title ()
 {
-TITLE=$*;
-export PROMPT_COMMAND='echo -ne "\033]0;$TITLE\007"'
+  TITLE=$*;
+  export PROMPT_COMMAND='echo -ne "\033]0;$TITLE\007"'
 }
 
 #   trash: Move something to trash
 #   ------------------------------------------------------
 trash () {
-mv "$1" ~/.Trash
+  mv "$1" ~/.Trash
 }
 
+#   beep: Make the terminal bell sound
+#   Example usage: <long running build command>; beep
+#   ------------------------------------------------------
+beep() {
+  osascript -e 'beep'
+}
 
 #   -------------------------------
 #   FILE AND FOLDER MANAGEMENT
@@ -60,23 +66,25 @@ mv "$1" ~/.Trash
 
 #   zipf:   To create a ZIP archive of a folder
 #   ------------------------------------------------------
-zipf () { zip -r "$1".zip "$1" ; }
+zipf () { 
+  zip -r "$1".zip "$1" ; 
+}
 
 #   cdf:  'Cd's to frontmost window of MacOS Finder
 #   ------------------------------------------------------
 cdf () {
-currFolderPath=$( /usr/bin/osascript <<EOF
-EOT
-tell application "Finder"
-try
-set currFolder to (folder of the front window as alias)
-on error
-set currFolder to (path to desktop folder as alias)
-end try
-POSIX path of currFolder
-end tell
-EOT
-)
-echo "cd to \"$currFolderPath\""
-cd "$currFolderPath"
+  currFolderPath=$( /usr/bin/osascript <<EOF
+  EOT
+  tell application "Finder"
+    try
+      set currFolder to (folder of the front window as alias)
+    on error
+      set currFolder to (path to desktop folder as alias)
+    end try
+    POSIX path of currFolder
+  end tell
+  EOT
+  )
+  echo "cd to \"$currFolderPath\""
+  cd "$currFolderPath"
 }
