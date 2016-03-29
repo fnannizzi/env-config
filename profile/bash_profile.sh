@@ -38,6 +38,7 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 #   MAKE TERMINAL BETTER
 #   -----------------------------
 alias em='emacs -nw'
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 #   title:  Rename tabs in Terminal or iTerm
 #   ------------------------------------------------------
