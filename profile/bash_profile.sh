@@ -10,12 +10,17 @@ export PS2=": "
 #   Set Paths and Variables
 #   ------------------------------------------------------------
 export PATH=/usr/local/bin:/usr/local/share/python:$PATH
-# Added for MacPorts
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
-export BOOST_ROOT=/usr/local/opt/boost149
-export BOOST_INCLUDEDIR=/usr/local/opt/boost149/include
-export BOOST_LIBRARYDIR=/usr/local/opt/boost149/lib
+case "$OSTYPE" in
+    darwin*)
+        # Added for MacPorts
+        export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
+        export BOOST_ROOT=/usr/local/opt/boost149
+        export BOOST_INCLUDEDIR=/usr/local/opt/boost149/include
+        export BOOST_LIBRARYDIR=/usr/local/opt/boost149/lib
+        ;;
+esac
 
 #   Set Default Editor
 #   ------------------------------------------------------------
@@ -38,54 +43,32 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 #   MAKE TERMINAL BETTER
 #   -----------------------------
 alias em='emacs -nw'
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+case "$OSTYPE" in
+    darwin*)
+        alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+        ;;
+esac
 
 #   title:  Rename tabs in Terminal or iTerm
 #   ------------------------------------------------------
 function title ()
 {
-  TITLE=$*;
-  export PROMPT_COMMAND='echo -ne "\033]0;$TITLE\007"'
+    TITLE=$*;
+    export PROMPT_COMMAND='echo -ne "\033]0;$TITLE\007"'
 }
 
 #   trash: Move something to trash
 #   ------------------------------------------------------
 trash () {
-  mv "$1" ~/.Trash
+    mv "$1" ~/.Trash
 }
 
-#   beep: Make the terminal bell sound
-#   Example usage: <long running build command>; beep
-#   ------------------------------------------------------
-beep() {
-  osascript -e 'beep'
-}
-
-#   -------------------------------
-#   FILE AND FOLDER MANAGEMENT
-#   -------------------------------
-
-#   zipf:   To create a ZIP archive of a folder
-#   ------------------------------------------------------
-zipf () { 
-  zip -r "$1".zip "$1" ; 
-}
-
-#   cdf:  'Cd's to frontmost window of MacOS Finder
-#   ------------------------------------------------------
-cdf () {
-  currFolderPath=$( /usr/bin/osascript <<EOF
-  EOT
-  tell application "Finder"
-    try
-      set currFolder to (folder of the front window as alias)
-    on error
-      set currFolder to (path to desktop folder as alias)
-    end try
-    POSIX path of currFolder
-  end tell
-  EOT
-  )
-  echo "cd to \"$currFolderPath\""
-  cd "$currFolderPath"
-}
+case "$OSTYPE" in
+    darwin*)
+        #   beep: Make the terminal bell sound
+        #   Example usage: <long running build command>; beep
+        #   ------------------------------------------------------
+        beep() {
+            osascript -e 'beep'
+        }
+esac

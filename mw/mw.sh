@@ -1,23 +1,41 @@
 #   -----------------------------
 #   MathWorks-specific 
 #   -----------------------------
-alias setmac="setmwe -a maci64 pwd"
-alias setand="setmwe -a android-arm-32 pwd"
-alias setios="setmwe -a ios-arm-64 pwd"
+case "$OSTYPE" in
+    darwin*)
+        alias setmac="setmwe -a maci64 pwd"
+        alias setand="setmwe -a android-arm-32 pwd"
+        alias setios="setmwe -a ios-arm-64 pwd"
+        ;;
 
-#   -----------------------------
-#   Perforce 
-#   -----------------------------
-export P4MERGE="/Applications/p4merge.app/Contents/MacOS/p4merge"
-export EDITOR="emacs -nw"
-export P4EDITOR="emacs -nw"
+    linux*)
+        alias setlnx="setmwe -a glnxa64 pwd"
+        alias setlarm="setmwe -a linux-arm-32 pwd"
+        ;;
+esac
 
 #   -----------------------------
 #   Application-specific 
 #   -----------------------------
-alias xc="open -a /Applications/Xcode6.2.0.app/ "
-alias em='/Applications/Emacs_24.3.app/Contents/MacOS/Emacs -nw'
-alias emacs='/Applications/Emacs_24.3.app/Contents/MacOS/Emacs'
+case "$OSTYPE" in
+    darwin*)
+        alias xc="open -a /Applications/Xcode6.2.0.app/ "
+        alias em='/Applications/Emacs_24.3.app/Contents/MacOS/Emacs -nw'
+        alias emacs='/Applications/Emacs_24.3.app/Contents/MacOS/Emacs -nw'
+        ;;
+esac
+
+#   -----------------------------
+#   Perforce 
+#   -----------------------------
+case "$OSTYPE" in
+    darwin*)
+        export P4MERGE="/Applications/p4merge.app/Contents/MacOS/p4merge"
+        ;;
+esac
+
+export EDITOR="emacs -nw"
+export P4EDITOR="emacs -nw"
 
 #   -----------------------------
 #   Android Development
