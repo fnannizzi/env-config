@@ -31,17 +31,19 @@ export EDITOR=/usr/bin/emacs
 #   ------------------------------------------------------------
 export BLOCKSIZE=1k
 
-#   Add color to terminal
-#   (this is all commented out as I use Mac Terminal Profiles)
-#   from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
-#   ------------------------------------------------------------
-export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
-
-
 #   -----------------------------
 #   MAKE TERMINAL BETTER
 #   -----------------------------
+
+#   Add color to terminal
+#   ------------------------------------------------------------
+case "$OSTYPE" in
+    darwin*)
+        export CLICOLOR=1
+        export LSCOLORS=ExFxBxDxCxegedabagacad
+        ;;
+esac
+
 alias em='emacs -nw'
 case "$OSTYPE" in
     darwin*)
@@ -50,11 +52,12 @@ case "$OSTYPE" in
 esac
 
 #   title:  Rename tabs in Terminal or iTerm
+#   Note: iterm2 command is added because shell intregration breaks without it
 #   ------------------------------------------------------
 function title ()
 {
     TITLE=$*;
-    export PROMPT_COMMAND='echo -ne "\033]0;$TITLE\007"'
+    export PROMPT_COMMAND='echo -ne "\033]0;$TITLE\007"; iterm2_preexec_invoke_cmd'
 }
 
 #   trash: Move something to trash
@@ -62,13 +65,3 @@ function title ()
 trash () {
     mv "$1" ~/.Trash
 }
-
-case "$OSTYPE" in
-    darwin*)
-        #   beep: Make the terminal bell sound
-        #   Example usage: <long running build command>; beep
-        #   ------------------------------------------------------
-        beep() {
-            osascript -e 'beep'
-        }
-esac

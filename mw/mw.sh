@@ -19,7 +19,7 @@ esac
 #   -----------------------------
 case "$OSTYPE" in
     darwin*)
-        alias xc="open -a /Applications/Xcode6.2.0.app/ "
+        alias xc="open -a Xcode "
         alias em='/Applications/Emacs_24.3.app/Contents/MacOS/Emacs -nw'
         alias emacs='/Applications/Emacs_24.3.app/Contents/MacOS/Emacs -nw'
         ;;
@@ -53,4 +53,7 @@ alias acppfilt="$NDK_TOOL_ROOT/arm-linux-androideabi-c++filt"
 # Added for Gradle
 export PATH="/sandbox/fnannizz/android/gradle-2.5/bin:$PATH"
 
+#   -----------------------------
+#   Finish Up
+#   -----------------------------
 cd /sandbox/fnannizz
