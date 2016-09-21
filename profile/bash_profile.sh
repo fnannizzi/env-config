@@ -65,3 +65,8 @@ function title ()
 trash () {
     mv "$1" ~/.Trash
 }
+
+#   -----------------------------
+#   Finish Up
+#   -----------------------------
+source ~/.iterm2_shell_integration.`basename $SHELL`
