@@ -20,8 +20,8 @@ esac
 case "$OSTYPE" in
     darwin*)
         alias xc="open -a Xcode "
-        alias em='/Applications/Emacs_24.3.app/Contents/MacOS/Emacs -nw'
-        alias emacs='/Applications/Emacs_24.3.app/Contents/MacOS/Emacs -nw'
+        alias em='/Applications/Emacs_24.5-1.app/Contents/MacOS/Emacs -nw'
+        alias emacs='/Applications/Emacs_24.5-1.app/Contents/MacOS/Emacs -nw'
         ;;
 esac
 
