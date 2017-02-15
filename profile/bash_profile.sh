@@ -4,23 +4,8 @@
 
 #   Change Prompt
 #   ------------------------------------------------------------
-export PS1="________________________________________________________________________________\n\w \n: "
-export PS2=": "
-
-#   Set Paths and Variables
-#   ------------------------------------------------------------
-export PATH=/usr/local/bin:/usr/local/share/python:$PATH
-
-case "$OSTYPE" in
-    darwin*)
-        # Added for MacPorts
-        export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-
-        export BOOST_ROOT=/usr/local/opt/boost149
-        export BOOST_INCLUDEDIR=/usr/local/opt/boost149/include
-        export BOOST_LIBRARYDIR=/usr/local/opt/boost149/lib
-        ;;
-esac
+export PS1='________________________________________________________________________________ \D{%T} \n\w \n: '
+export PS2=': '
 
 #   Set Default Editor
 #   ------------------------------------------------------------
@@ -43,12 +28,6 @@ case "$OSTYPE" in
         export LSCOLORS=ExFxBxDxCxegedabagacad
         ;;
 esac
-
-#   errred: Make stderr output red
-#   ------------------------------------------------------
-errred () {
-    (set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
-}
 
 alias em='emacs -nw'
 case "$OSTYPE" in
