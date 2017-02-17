@@ -51,6 +51,12 @@ trash () {
     mv "$1" ~/.Trash
 }
 
+# tab-complete git branches
+#   ------------------------------------------------------
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
 #   -----------------------------
 #   Finish Up
 #   -----------------------------
